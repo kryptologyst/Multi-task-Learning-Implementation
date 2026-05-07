@@ -1,0 +1,50 @@
+# @package _global_
+defaults:
+  - _self_
+  - model: resnet_mtl
+  - data: cifar10_attributes
+  - training: default
+  - evaluation: default
+
+# Experiment configuration
+experiment_name: "mtl_experiment"
+seed: 42
+device: "auto"  # auto, cuda, mps, cpu
+
+# Paths
+data_dir: "data"
+output_dir: "outputs"
+checkpoint_dir: "checkpoints"
+log_dir: "logs"
+
+# Training configuration
+num_epochs: 100
+batch_size: 32
+learning_rate: 0.001
+weight_decay: 1e-4
+
+# Multi-task specific
+task_weights:
+  classification: 1.0
+  age_regression: 1.0
+  gender_classification: 1.0
+
+# Advanced MTL methods
+mtl_method: "baseline"  # baseline, uncertainty_weighting, gradient_surgery, pcgrad
+uncertainty_weighting: false
+gradient_surgery: false
+pcgrad: false
+
+# Evaluation
+eval_frequency: 5
+save_frequency: 10
+log_frequency: 10
+
+# Visualization
+plot_results: true
+save_plots: true
+plot_frequency: 20
+
+# Safety and ethics
+add_safety_disclaimers: true
+privacy_mode: false

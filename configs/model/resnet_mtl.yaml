@@ -1,0 +1,24 @@
+# @package model
+_target_: mtl.models.ResNetMTL
+
+# Model configuration
+backbone: "resnet50"
+pretrained: true
+freeze_backbone: false
+dropout_rate: 0.5
+
+# Task-specific heads
+classification:
+  num_classes: 10
+  hidden_dim: 512
+  
+age_regression:
+  hidden_dim: 256
+  
+gender_classification:
+  num_classes: 2
+  hidden_dim: 256
+
+# Feature extraction
+feature_dim: 2048
+shared_layers: [512, 256]

@@ -1,0 +1,38 @@
+# @package evaluation
+_target_: mtl.eval.Evaluator
+
+# Metrics to compute
+metrics:
+  classification:
+    - accuracy
+    - f1_macro
+    - f1_weighted
+    - precision_macro
+    - recall_macro
+    - confusion_matrix
+    
+  age_regression:
+    - mse
+    - mae
+    - rmse
+    - mape
+    - r2_score
+    
+  gender_classification:
+    - accuracy
+    - f1_macro
+    - precision_macro
+    - recall_macro
+    - confusion_matrix
+
+# Evaluation settings
+compute_per_class_metrics: true
+save_predictions: true
+save_embeddings: false
+compute_calibration: true
+
+# Visualization
+plot_confusion_matrix: true
+plot_regression_scatter: true
+plot_loss_curves: true
+plot_metric_curves: true

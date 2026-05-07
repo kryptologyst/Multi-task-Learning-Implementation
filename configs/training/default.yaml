@@ -1,0 +1,38 @@
+# @package training
+_target_: mtl.train.Trainer
+
+# Optimizer configuration
+optimizer:
+  _target_: torch.optim.Adam
+  lr: 0.001
+  weight_decay: 1e-4
+  betas: [0.9, 0.999]
+
+# Scheduler configuration
+scheduler:
+  _target_: torch.optim.lr_scheduler.CosineAnnealingLR
+  T_max: 100
+  eta_min: 1e-6
+
+# Loss functions
+losses:
+  classification:
+    _target_: torch.nn.CrossEntropyLoss
+    label_smoothing: 0.1
+  age_regression:
+    _target_: torch.nn.MSELoss
+  gender_classification:
+    _target_: torch.nn.CrossEntropyLoss
+    label_smoothing: 0.1
+
+# Training parameters
+max_epochs: 100
+gradient_clip_val: 1.0
+accumulate_grad_batches: 1
+precision: "16-mixed"  # 16-bit mixed precision
+
+# Early stopping
+early_stopping:
+  monitor: "val_loss"
+  patience: 15
+  mode: "min"
